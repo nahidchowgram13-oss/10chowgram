@@ -273,6 +273,9 @@
         firebase.initializeApp(firebaseConfig);
     }
     const db = firebase.firestore();
+    // ডাটাবেস সঠিক রাখার জন্য ডেটাবেস রেফারেন্স নিশ্চিত করা হলো
+    db.settings({ databaseURL: "https://chowgram-64be4.firebaseio.com" });
+    
     const storage = firebase.storage();
 
     function showLoading(show) {
@@ -729,9 +732,9 @@
         const link = document.createElement("a");
         link.setAttribute("href", url);
         link.setAttribute("download", "chowgram_avmis_applicants.csv");
-        document.body.appendChild(link);
+        document.getElementById('adminDashboard').appendChild(link);
         link.click();
-        document.body.removeChild(link);
+        document.getElementById('adminDashboard').removeChild(link);
         showLoading(false);
     }
 </script>
