@@ -4,23 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>১০ নং চৌগ্রাম আনসার ও ভিডিপি AVMIS</title>
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
-    <meta charset="UTF-8">
-  <script>
-  const firebaseConfig = {
-    apiKey: "আপনার_এপিআই_কি",
-    authDomain: "chowgram-0.firebaseapp.com",
-    projectId: "chowgram-0",
-    storageBucket: "chowgram-0.firebasestorage.app",
-    messagingSenderId: "আপনার_সেন্ডার_আইডি",
-    appId: "আপনার_অ্যাপ_আইডি"
-  };
-</script>
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    
     <style>
         :root {
             --primary: #1b5e20;
@@ -28,28 +15,76 @@ const app = initializeApp(firebaseConfig);
             --accent: #4caf50;
             --bg: #f4f6f8;
             --text: #333;
-            --danger: #c62828;
         }
-        body { font-family: 'SolaimanLipi', Arial, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; }
-        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .slogan { font-size: 13px; background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 5px; font-weight: bold; }
+        body {
+            font-family: 'SolaimanLipi', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            direction: ltr;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .slogan {
+            font-size: 13px;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
         h1 { font-size: 18px; margin: 5px 0; }
         .container { max-width: 600px; margin: 15px auto; padding: 10px; }
-        .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
-        button { background-color: var(--secondary); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 14px; width: 100%; margin-top: 8px; font-weight: bold; }
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            margin-top: 8px;
+            font-weight: bold;
+        }
         button:hover { background-color: var(--primary); }
-        button.danger { background-color: var(--danger); }
-        button.danger:hover { background-color: #b71c1c; }
-        input, select, textarea { width: 100%; padding: 8px; margin: 5px 0 12px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        
-        .input-group { position: relative; width: 100%; }
-        .input-group input { padding-right: 40px; }
-        .toggle-password { position: absolute; right: 10px; top: 38%; transform: translateY(-50%); cursor: pointer; font-size: 18px; color: #777; user-select: none; }
-
-        .logo-box { width: 80px; height: 80px; border: 2px dashed #bbb; display: flex; align-items: center; justify-content: center; margin: 10px auto; border-radius: 50%; overflow: hidden; background: #fff; cursor: pointer; position: relative; }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .logo-box {
+            width: 80px;
+            height: 80px;
+            border: 2px dashed #bbb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #fff;
+        }
         .logo-box img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-box .overlay { position: absolute; bottom: 0; background: rgba(0,0,0,0.5); color: white; width: 100%; font-size: 10px; text-align: center; padding: 2px 0; }
-        
+        .flex-group { display: flex; gap: 10px; }
+        .flex-group > div { flex: 1; }
         .tab-bar { display: flex; gap: 5px; margin-bottom: 15px; }
         .tab-bar button { flex: 1; padding: 8px; font-size: 12px; background: #ddd; color: #333; }
         .tab-bar button.active { background: var(--primary); color: white; }
@@ -58,69 +93,63 @@ const app = initializeApp(firebaseConfig);
         .badge-pending { background: #ff9800; color: white; }
         .badge-confirmed { background: #4caf50; color: white; }
         .badge-blocked { background: #f44336; color: white; }
-        .install-banner { background: #e8f5e9; border: 1px solid #a5d6a7; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 15px; }
-        .lock-icon { font-size: 32px; color: var(--danger); text-align: center; margin-bottom: 5px; }
-        .locked-view { background: #ffebee; border: 2px solid var(--danger); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="slogan">শান্তি-শৃঙ্খলা ও উন্নয়ন ও নিরাপত্তা সর্বোচ্চ আমরা</div>
-    <div class="logo-box" id="appLogoDisplay" onclick="triggerLogoUpload()">
-        <span style="font-size:10px; color:#777;">লোগো সেট করুন</span>
+    <div class="logo-box" id="appLogoDisplay">
+        <span style="font-size:10px; color:#777;">লোগো</span>
     </div>
-    <input type="file" id="logoInput" accept="image/*" class="hidden" onchange="uploadLogo(event)">
     <h1>১০ নং চৌগ্রাম আনসার ও ভিডিপি AVMIS</h1>
 </header>
 
 <div class="container">
-    <div class="install-banner">
-        <h4>📲 অ্যান্ড্রয়েড অ্যাপ ইনস্টল ও শেয়ার</h4>
-        <p style="font-size: 12px; color: #555;">ব্রাউজার মেনু থেকে "Add to Home screen" এ ক্লিক করুন।</p>
-        <button onclick="installApp()" style="background: var(--primary);">📥 অ্যাপ ইনস্টল / লিংক কপি</button>
-    </div>
-
+    <!-- উপরের ট্যাব বাটন -->
     <div class="tab-bar">
-        <button class="active" onclick="switchTab('applyTab', this)">১. সদস্য আবেদন ও লগইন</button>
-        <button onclick="switchTab('execTab', this)">২. কার্যকরী সদস্য</button>
-        <button onclick="switchTab('adminTab', this)">৩. এডমিন প্যানেল</button>
+        <button class="active" onclick="switchTab('applyTab')">সদস্য আবেদন/লগইন</button>
+        <button onclick="switchTab('execTab')">কার্যকরী সদস্য</button>
+        <button onclick="switchTab('adminTab')">এডমিন প্যানেল</button>
     </div>
 
     <!-- ট্যাব ১: সদস্য আবেদন ও লগইন -->
     <div id="applyTab" class="card">
         <h3>সদস্য কর্নার</h3>
-        <div style="display: flex; gap: 10px;">
+        <div class="flex-group">
             <button onclick="showSubTab('regForm')">নতুন আবেদন</button>
             <button onclick="showSubTab('loginForm')">সদস্য লগইন</button>
         </div>
 
+        <!-- রেজিস্ট্রেশন ফরম -->
         <div id="regForm" style="margin-top:15px;">
             <h4>সদস্য আবেদন ফরম</h4>
             <form id="memberApplicationForm" onsubmit="submitApplication(event)">
                 <label>১. নিজের পূর্ণ নাম:</label>
                 <input type="text" id="mName" required>
 
-                <label>২. নিজের ছবি:</label>
-                <input type="file" accept="image/*" id="mPhoto" required>
+                <label>২. নিজের ছবি (ক্যামেরা বা গ্যালারি):</label>
+                <input type="file" accept="image/*" id="mPhoto" capture="environment" required>
 
                 <label>৩. এন আইডি কার্ড (সামনের ছবি):</label>
-                <input type="file" accept="image/*" id="mNidFront" required>
+                <input type="file" accept="image/*" id="mNidFront" capture="environment" required>
 
                 <label>৪. এন আইডি কার্ড (পিছনের ছবি):</label>
-                <input type="file" accept="image/*" id="mNidBack" required>
+                <input type="file" accept="image/*" id="mNidBack" capture="environment" required>
 
-                <label>৫. পেমেন্ট গেটওয়ে:</label>
+                <label>৫. পেমেন্ট গেটওয়ে (বিকাশ/নগদ/রকেট):</label>
                 <select id="mPaymentMethod">
-                    <option value="Bkash">বিকাশ</option><option value="Nagad">নগদ</option><option value="Rocket">রকেট</option>
+                    <option value="Bkash">বিকাশ</option>
+                    <option value="Nagad">নগদ</option>
+                    <option value="Rocket">রকেট</option>
                 </select>
-                <input type="text" id="mTxId" placeholder="ট্রানজ্যাকশন আইডি" required>
+                <input type="text" id="mTxId" placeholder="ট্রানজ্যাকশন আইডি (TrxID) দিন" required>
 
-                <label>৬. অভিভাবকের নম্বর:</label>
+                <label>৬. অভিভাবকের নম্বর (ভেরিফিকেশনের জন্য):</label>
                 <input type="tel" id="mGuardianNo" required>
 
                 <label>৭. সার্টিফিকেটের ছবি:</label>
-                <input type="file" accept="image/*" id="mCert" required>
+                <input type="file" accept="image/*" id="mCert" capture="environment" required>
 
                 <label>৮. রক্তের গ্রুপ:</label>
                 <select id="mBlood" required>
@@ -130,19 +159,16 @@ const app = initializeApp(firebaseConfig);
                     <option value="O+">O+</option><option value="O-">O-</option>
                 </select>
 
-                <label>৯. স্বাক্ষর:</label>
+                <label>৯. স্বাক্ষর (ছবির ফাইল বা আপলোড):</label>
                 <input type="file" accept="image/*" id="mSign" required>
 
-                <label>১০. নিজ নম্বর (ইউজার নেম):</label>
+                <label>১০. নিজ নম্বর (ইউজার নেম হিসেবে ব্যবহৃত হবে):</label>
                 <input type="tel" id="mPhone" required>
 
-                <label>১১. ৬ সংখ্যার পিন:</label>
-                <div class="input-group">
-                    <input type="password" id="mPin" maxlength="6" pattern="\d{6}" placeholder="৬ সংখ্যার পিন" required>
-                    <span class="toggle-password" onclick="togglePassword('mPin')">👁️</span>
-                </div>
+                <label>১১. ৬ সংখ্যার পিন (লগইনের জন্য):</label>
+                <input type="password" id="mPin" maxlength="6" pattern="\d{6}" placeholder="৬ সংখ্যার পিন" required>
 
-                <label>১২. জন্মদিন:</label>
+                <label>১২. জন্মদিন / মাস / সাল:</label>
                 <input type="date" id="mDob" required>
 
                 <label>১৩. গ্রাম / ডাকঘর / ওয়ার্ড / পাড়া:</label>
@@ -152,98 +178,50 @@ const app = initializeApp(firebaseConfig);
             </form>
         </div>
 
+        <!-- মেম্বার লগইন -->
         <div id="loginForm" class="hidden" style="margin-top:15px;">
-            <h4>সদস্য লগইন</h4>
-            <input type="tel" id="loginPhone" placeholder="নিজ নম্বর">
-            <div class="input-group">
-                <input type="password" id="loginPin" placeholder="৬ সংখ্যার পিন" maxlength="6">
-                <span class="toggle-password" onclick="togglePassword('loginPin')">👁️</span>
-            </div>
+            <h4>সদস্য লগইন ও প্রোফাইল স্ট্যাটাস</h4>
+            <input type="tel" id="loginPhone" placeholder="নিজ নম্বর (ইউজার নেম)">
+            <input type="password" id="loginPin" placeholder="৬ সংখ্যার পিন" maxlength="6">
             <button onclick="memberLogin()">লগইন করুন</button>
-            <button onclick="showSubTab('forgotPinForm')" style="background:none; color:var(--danger); text-decoration:underline; font-size:12px;">পিন ভুলে গেছেন? রিসেট করুন</button>
             
-            <div id="memberProfileView" class="hidden" style="margin-top:15px; border-top:1px solid #ddd; padding-top:10px;"></div>
-        </div>
-
-        <!-- মেম্বার ফরগেট পিন -->
-        <div id="forgotPinForm" class="hidden" style="margin-top:15px;">
-            <h4>সদস্য পিন রিসেট</h4>
-            <input type="tel" id="fpPhone" placeholder="নিজ নম্বর">
-            <input type="tel" id="fpGuardian" placeholder="অভিভাবকের নম্বর (যাচাইয়ের জন্য)">
-            <div class="input-group">
-                <input type="password" id="fpNewPin" placeholder="নতুন ৬ সংখ্যার পিন" maxlength="6">
-                <span class="toggle-password" onclick="togglePassword('fpNewPin')">👁️</span>
+            <div id="memberProfileView" class="hidden" style="margin-top:15px; border-top:1px solid #ddd; padding-top:10px;">
+                <!-- ডাইনামিক মেম্বার প্রোফাইল -->
             </div>
-            <button onclick="resetMemberPin()">পিন পরিবর্তন করুন</button>
-            <button onclick="showSubTab('loginForm')">লগইন পেজে ফিরে যান</button>
         </div>
     </div>
 
     <!-- ট্যাব ২: কার্যকরী সদস্য প্রোফাইল -->
     <div id="execTab" class="card hidden">
-        <h3>কার্যকরী সদস্যবৃন্দের প্রোফাইল</h3>
-        
-        <!-- লকিং স্ট্যাটাস নোটিশ -->
-        <div id="lockNotice" class="hidden locked-view">
-            <div class="lock-icon">🔒</div>
-            <h3 style="margin:5px 0;">প্রোফাইল স্থায়ীভাবে লক করা আছে</h3>
-            <p style="font-size:12px; color:#555;">কার্যকরী সদস্যদের তথ্য ডাটাবেজে সংরক্ষিত এবং লকড। শুধুমাত্র নিচের পিন রিসেট বাটন ব্যবহার করা যাবে।</p>
-        </div>
-
+        <h3>কার্যকরী সদস্যবৃন্দের প্রোফাইল (২ জন)</h3>
         <div id="execContainer">
+            <!-- কার্যকরী সদস্য ১ -->
             <div style="background:#e8f5e9; padding:10px; border-radius:6px; margin-bottom:10px;">
                 <h4>কার্যকরী সদস্য ১</h4>
-                <div class="logo-box" onclick="document.getElementById('e1FileInput').click()">
-                    <img id="e1PhotoDisplay" src="https://via.placeholder.com/150?text=ছবি" alt="ছবি">
-                    <div class="overlay">ছবি দিন</div>
-                </div>
-                <input type="file" id="e1FileInput" accept="image/*" class="hidden" onchange="previewExecPhoto('e1FileInput', 'e1PhotoDisplay')">
+                <div class="logo-box" id="exec1PhotoBox"><span style="font-size:10px;">ছবি</span></div>
+                <input type="file" id="e1Photo" accept="image/*">
                 <input type="text" id="e1Name" placeholder="নাম">
                 <input type="tel" id="e1Phone" placeholder="ফোন নম্বর">
                 <input type="email" id="e1Email" placeholder="Gmail (এডমিন ইউজারনেম)">
                 <input type="tel" id="e1Whatsapp" placeholder="WhatsApp নম্বর">
                 <input type="text" id="e1Role" placeholder="পদবি">
-                <div class="input-group">
-                    <input type="password" id="e1Pin" placeholder="এডমিন পিন">
-                    <span class="toggle-password" onclick="togglePassword('e1Pin')">👁️</span>
-                </div>
+                <input type="password" id="e1Pin" placeholder="এডমিন পিন (নতুন)">
             </div>
-
+            <!-- কার্যকরী সদস্য ২ -->
             <div style="background:#e8f5e9; padding:10px; border-radius:6px; margin-bottom:10px;">
                 <h4>কার্যকরী সদস্য ২</h4>
-                <div class="logo-box" onclick="document.getElementById('e2FileInput').click()">
-                    <img id="e2PhotoDisplay" src="https://via.placeholder.com/150?text=ছবি" alt="ছবি">
-                    <div class="overlay">ছবি দিন</div>
-                </div>
-                <input type="file" id="e2FileInput" accept="image/*" class="hidden" onchange="previewExecPhoto('e2FileInput', 'e2PhotoDisplay')">
+                <div class="logo-box" id="exec2PhotoBox"><span style="font-size:10px;">ছবি</span></div>
+                <input type="file" id="e2Photo" accept="image/*">
                 <input type="text" id="e2Name" placeholder="নাম">
                 <input type="tel" id="e2Phone" placeholder="ফোন নম্বর">
                 <input type="email" id="e2Email" placeholder="Gmail">
                 <input type="tel" id="e2Whatsapp" placeholder="WhatsApp নম্বর">
                 <input type="text" id="e2Role" placeholder="পদবি">
-                <div class="input-group">
-                    <input type="password" id="e2Pin" placeholder="এডমিন পিন">
-                    <span class="toggle-password" onclick="togglePassword('e2Pin')">👁️</span>
-                </div>
+                <input type="password" id="e2Pin" placeholder="এডমিন পিন (নতুন)">
             </div>
-            <button onclick="saveAndLockExecutives()" class="danger">🔒 তথ্য সেভ ও চিরতরে লক করুন</button>
+            <button onclick="saveAndLockExecutives()" style="background:#c62828;">🔒 তথ্য সেভ ও চিরতরে লক করুন</button>
         </div>
-
-        <div id="execDisplayView" class="hidden" style="margin-top:15px;">
-            <!-- লকিং পরবর্তী রিড অনলি ভিউ -->
-        </div>
-
-        <!-- এডমিন পিন রিসেট অপশন -->
-        <div style="margin-top:20px; border-top:1px dashed #aaa; padding-top:15px;">
-            <h4>কার্যকরী সদস্য পিন রিসেট (ফরগেট পিন)</h4>
-            <input type="email" id="fpExecEmail" placeholder="আপনার রেজিস্টার্ড Gmail">
-            <input type="tel" id="fpExecPhone" placeholder="আপনার রেজিস্টার্ড ফোন নম্বর">
-            <div class="input-group">
-                <input type="password" id="fpExecNewPin" placeholder="নতুন এডমিন পিন">
-                <span class="toggle-password" onclick="togglePassword('fpExecNewPin')">👁️</span>
-            </div>
-            <button onclick="resetExecPin()" style="background:var(--primary);">পিন রিসেট করুন</button>
-        </div>
+        <div id="execDisplayView" style="margin-top:15px;"></div>
     </div>
 
     <!-- ট্যাব ৩: এডমিন প্যানেল -->
@@ -251,185 +229,85 @@ const app = initializeApp(firebaseConfig);
         <h3>এডমিন প্যানেল লগইন</h3>
         <div id="adminLoginBox">
             <input type="email" id="adminEmail" placeholder="আপনার Gmail (ইউজারনেম)">
-            <div class="input-group">
-                <input type="password" id="adminPin" placeholder="এডমিন পিন">
-                <span class="toggle-password" onclick="togglePassword('adminPin')">👁️</span>
-            </div>
+            <input type="password" id="adminPin" placeholder="এডমিন পিন">
             <button onclick="adminLogin()">এডমিন লগইন</button>
         </div>
+
         <div id="adminDashboard" class="hidden" style="margin-top:15px;">
-            <h4>ড্যাশবোর্ড</h4>
+            <h4>ড্যাশবোর্ড ও পরিসংখ্যান</h4>
             <div id="statsBox" style="background:#e3f2fd; padding:10px; border-radius:5px; margin-bottom:10px;"></div>
-            <button onclick="exportDataCSV()" style="background:#1976d2;">📥 সকল ডাটা CSV হিসেবে ডাউনলোড</button>
+            <button onclick="exportDataCSV()" style="background:#1976d2;">📥 সকল ডাটা CSV ফাইল হিসেবে ডাউনলোড</button>
             <div id="applicantsList" style="margin-top:15px;"></div>
         </div>
     </div>
 </div>
 
 <script>
-    // এখানে আপনার ফায়ারবেস প্রজেক্টের কনফিগারেশন বসান
-  if (!firebase.apps.length) {
+    // Firebase Initialization
+    const firebaseConfig = {
+      apiKey: "AIzaSyC-K9QXOkFLCoENsmAJMpkF3iARhtzNJlU",
+      authDomain: "chowgram-64be4.firebaseapp.com",
+      projectId: "chowgram-64be4",
+      storageBucket: "chowgram-64be4.firebasestorage.app",
+      messagingSenderId: "297528570656",
+      appId: "1:297528570656:web:7ce1f16ccd75a50f471d45"
+    };
+
+    if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
-    const db = firebase.firestore();
-    const storage = firebase.storage();
 
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-    });
-
-    function installApp() {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-        } else {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(window.location.href);
-                alert("লিংকটি কপি করা হয়েছে! ব্রাউজারের মেনু থেকে 'Add to Home screen' এ ক্লিক করুন।");
-            } else {
-                alert("ব্রাউজারের মেনু (তিনটি ডট) থেকে 'Add to Home screen' অপশনটি ব্যবহার করুন।");
-            }
-        }
-    }
-
-    function togglePassword(inputId) {
-        const input = document.getElementById(inputId);
-        input.type = (input.type === "password") ? "text" : "password";
-    }
-
-    function switchTab(tabId, btnElement) {
+    // টগল নেভিগেশন
+    function switchTab(tabId) {
         document.getElementById('applyTab').classList.add('hidden');
         document.getElementById('execTab').classList.add('hidden');
         document.getElementById('adminTab').classList.add('hidden');
         document.getElementById(tabId).classList.remove('hidden');
-        
+
         document.querySelectorAll('.tab-bar button').forEach(b => b.classList.remove('active'));
-        if(btnElement) btnElement.classList.add('active');
+        event.target.classList.add('active');
         
-        if(tabId === 'execTab') checkExecLockStatus();
+        if(tabId === 'execTab') loadExecutables();
     }
 
     function showSubTab(subId) {
-        document.getElementById('regForm').classList.add('hidden');
-        document.getElementById('loginForm').classList.add('hidden');
-        document.getElementById('forgotPinForm').classList.add('hidden');
-        document.getElementById(subId).classList.remove('hidden');
+        if(subId === 'regForm') {
+            document.getElementById('regForm').classList.remove('hidden');
+            document.getElementById('loginForm').classList.add('hidden');
+        } else {
+            document.getElementById('regForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        }
     }
 
+    // লোকাল স্টোরেজ ডাটা ম্যানেজমেন্ট
+    function getStoredData(key) {
+        return JSON.parse(localStorage.getItem(key)) || [];
+    }
+
+    function setStoredData(key, data) {
+        localStorage.setItem(key, JSON.stringify(data));
+    }
+
+    // লোগো ও কার্যকরী প্রোফাইল পার্সিস্টেন্স
     window.onload = function() {
-        loadAppLogo();
+        let savedLogo = localStorage.getItem('avmis_logo');
+        if(savedLogo) document.getElementById('appLogoDisplay').innerHTML = `<img src="${savedLogo}">`;
+        
+        loadExecutables();
         checkExecLockStatus();
     }
 
-    function triggerLogoUpload() {
-        document.getElementById('logoInput').click();
-    }
-
-    async function uploadLogo(event) {
-        const file = event.target.files[0];
-        if(!file) return;
-        const storageRef = storage.ref('logos/app_logo');
-        await storageRef.put(file);
-        const url = await storageRef.getDownloadURL();
-        db.collection('system').doc('logo').set({ url: url });
-        document.getElementById('appLogoDisplay').innerHTML = `<img src="${url}"><div class="overlay">পরিবর্তন</div>`;
-    }
-
-    async function loadAppLogo() {
-        try {
-            const doc = await db.collection('system').doc('logo').get();
-            if(doc.exists) {
-                document.getElementById('appLogoDisplay').innerHTML = `<img src="${doc.data().url}"><div class="overlay">পরিবর্তন</div>`;
-            }
-        } catch(e) { console.log("Firebase not configured yet."); }
-    }
-
-    function previewExecPhoto(inputId, imgId) {
-        const file = document.getElementById(inputId).files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById(imgId).src = e.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
-    }
-
-    async function saveOrUploadExecPhoto(inputId, currentUrl) {
-        const file = document.getElementById(inputId).files[0];
-        if (file) {
-            const storageRef = storage.ref('exec_photos/' + Date.now());
-            await storageRef.put(file);
-            return await storageRef.getDownloadURL();
-        }
-        return currentUrl;
-    }
-
-    async function checkExecLockStatus() {
-        try {
-            const doc = await db.collection('system').doc('executives').get();
-            const formContainer = document.getElementById('execContainer');
-            const displayView = document.getElementById('execDisplayView');
-            const lockNotice = document.getElementById('lockNotice');
-
-            if(doc.exists && doc.data().locked) {
-                formContainer.classList.add('hidden');
-                displayView.classList.remove('hidden');
-                lockNotice.classList.remove('hidden');
-                const data = doc.data();
-                displayView.innerHTML = `
-                    <div style="background:#fff; border:1px solid #ddd; padding:15px; border-radius:8px;">
-                        <h3 style="text-align:center; color:var(--primary);">লকড কার্যকরী সদস্য প্রোফাইল</h3>
-                        <hr>
-                        <div style="display:flex; align-items:center; gap:15px; margin-bottom:15px;">
-                            <img src="${data.e1Photo}" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--secondary);">
-                            <div>
-                                <h4 style="margin:0;">১. ${data.e1Name}</h4>
-                                <p style="margin:2px 0; font-size:14px;">পদবি: ${data.e1Role} | ফোন: ${data.e1Phone}</p>
-                                <p style="margin:2px 0; font-size:13px;">WhatsApp: ${data.e1Whatsapp} | Email: ${data.e1Email}</p>
-                            </div>
-                        </div>
-                        <div style="display:flex; align-items:center; gap:15px;">
-                            <img src="${data.e2Photo}" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--secondary);">
-                            <div>
-                                <h4 style="margin:0;">২. ${data.e2Name}</h4>
-                                <p style="margin:2px 0; font-size:14px;">পদবি: ${data.e2Role} | ফোন: ${data.e2Phone}</p>
-                                <p style="margin:2px 0; font-size:13px;">WhatsApp: ${data.e2Whatsapp} | Email: ${data.e2Email}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                formContainer.classList.remove('hidden');
-                displayView.classList.add('hidden');
-                lockNotice.classList.add('hidden');
-            }
-        } catch(e) { console.log("Waiting for Firebase config."); }
-    }
-
-    async function saveAndLockExecutives() {
-        if(!confirm("একবার লক করলে আর কোনো তথ্য পরিবর্তন করা যাবে না। নিশ্চিত?")) return;
-
-        const e1PhotoDisplay = document.getElementById('e1PhotoDisplay').src;
-        const e2PhotoDisplay = document.getElementById('e2PhotoDisplay').src;
-
-        if(e1PhotoDisplay.includes('placeholder') || e2PhotoDisplay.includes('placeholder')) {
-            alert("উভয় কার্যকরী সদস্যের ছবি দেওয়া বাধ্যতামূলক!");
-            return;
-        }
-
-        const p1 = await saveOrUploadExecPhoto('e1FileInput', e1PhotoDisplay);
-        const p2 = await saveOrUploadExecPhoto('e2FileInput', e2PhotoDisplay);
-
-        const execData = {
+    function saveAndLockExecutives() {
+        if(!confirm("একবার লক করলে আর পরিবর্তন করা যাবে না। নিশ্চিত করুন?")) return;
+        
+        let execData = {
             e1Name: document.getElementById('e1Name').value,
             e1Phone: document.getElementById('e1Phone').value,
             e1Email: document.getElementById('e1Email').value,
             e1Whatsapp: document.getElementById('e1Whatsapp').value,
             e1Role: document.getElementById('e1Role').value,
             e1Pin: document.getElementById('e1Pin').value,
-            e1Photo: p1,
             
             e2Name: document.getElementById('e2Name').value,
             e2Phone: document.getElementById('e2Phone').value,
@@ -437,104 +315,95 @@ const app = initializeApp(firebaseConfig);
             e2Whatsapp: document.getElementById('e2Whatsapp').value,
             e2Role: document.getElementById('e2Role').value,
             e2Pin: document.getElementById('e2Pin').value,
-            e2Photo: p2,
             locked: true
         };
-
-        await db.collection('system').doc('executives').set(execData);
-        alert("কার্যকরী সদস্যদের তথ্য সফলভাবে সেভ ও চিরতরে লক করা হয়েছে!");
-        checkExecLockStatus();
+        setStoredData('avmis_execs', execData);
+        alert("কার্যকরী সদস্যদের তথ্য সফলভাবে সেভ ও লক করা হয়েছে!");
+        loadExecutables();
     }
 
-    async function resetExecPin() {
-        const email = document.getElementById('fpExecEmail').value;
-        const phone = document.getElementById('fpExecPhone').value;
-        const newPin = document.getElementById('fpExecNewPin').value;
+    function loadExecutables() {
+        let execs = getStoredData('avmis_execs');
+        let view = document.getElementById('execDisplayView');
+        let formContainer = document.getElementById('execContainer');
 
-        if(!email || !phone || !newPin) {
-            alert("অনুগ্রহ করে সকল তথ্য সঠিকভাবে পূরণ করুন!");
-            return;
-        }
-
-        const execRef = db.collection('system').doc('executives');
-        const doc = await execRef.get();
-
-        if(doc.exists) {
-            const data = doc.data();
-            if(data.e1Email === email && data.e1Phone === phone) {
-                await execRef.update({ e1Pin: newPin });
-                alert("কার্যকরী সদস্য ১-এর পিন সফলভাবে রিসেট করা হয়েছে!");
-            } else if(data.e2Email === email && data.e2Phone === phone) {
-                await execRef.update({ e2Pin: newPin });
-                alert("কার্যকরী সদস্য ২-এর পিন সফলভাবে রিসেট করা হয়েছে!");
-            } else {
-                alert("প্রদত্ত ইমেইল বা ফোন নম্বর আমাদের সিস্টেমে মিলেনি!");
-                return;
-            }
-            document.getElementById('fpExecEmail').value = '';
-            document.getElementById('fpExecPhone').value = '';
-            document.getElementById('fpExecNewPin').value = '';
-        } else {
-            alert("কোনো কার্যকরী সদস্যের প্রোফাইল সেটআপ করা নেই!");
+        if(execs && execs.locked) {
+            formContainer.classList.add('hidden');
+            view.innerHTML = `
+                <div style="background:#fff; border:1px solid #ddd; padding:10px; border-radius:5px;">
+                    <h4>১. ${execs.e1Name || 'কার্যকরী সদস্য'} (${execs.e1Role || ''})</h4>
+                    <p>ফোন: ${execs.e1Phone} | WhatsApp: ${execs.e1Whatsapp} | Email: ${execs.e1Email}</p>
+                    <hr>
+                    <h4>২. ${execs.e2Name || 'কার্যকরী সদস্য'} (${execs.e2Role || ''})</h4>
+                    <p>ফোন: ${execs.e2Phone} | WhatsApp: ${execs.e2Whatsapp} | Email: ${execs.e2Email}</p>
+                    <p style="color:green; font-weight:bold; text-align:center;">🔒 প্রোফাইল স্থায়ীভাবে লক করা আছে</p>
+                </div>
+            `;
         }
     }
 
-    async function uploadFileToStorage(fileInputId, path) {
-        const file = document.getElementById(fileInputId).files[0];
-        if(!file) return "";
-        const storageRef = storage.ref(path + '/' + Date.now() + '_' + file.name);
-        await storageRef.put(file);
-        return await storageRef.getDownloadURL();
+    function checkExecLockStatus() {
+        let execs = getStoredData('avmis_execs');
+        if(execs && execs.locked) {
+            document.getElementById('execContainer').classList.add('hidden');
+        }
     }
 
-    async function submitApplication(event) {
+    // সদস্য আবেদন সাবমিট
+    function submitApplication(event) {
         event.preventDefault();
+        
+        let reader = new FileReader();
+        let photoFile = document.getElementById('mPhoto').files[0];
+        
+        reader.onload = function(e) {
+            let photoUrl = e.target.result;
+            let applicants = getStoredData('avmis_applicants');
+            
+            let newApplicant = {
+                id: Date.now(),
+                name: document.getElementById('mName').value,
+                phone: document.getElementById('mPhone').value,
+                pin: document.getElementById('mPin').value,
+                payment: document.getElementById('mPaymentMethod').value,
+                txId: document.getElementById('mTxId').value,
+                guardian: document.getElementById('mGuardianNo').value,
+                blood: document.getElementById('mBlood').value,
+                dob: document.getElementById('mDob').value,
+                address: document.getElementById('mAddress').value,
+                date: new Date().toLocaleDateString(),
+                status: 'Pending', // Pending, Confirmed, Blocked
+                photo: photoUrl
+            };
 
-        const photoUrl = await uploadFileToStorage('mPhoto', 'applicant_photos');
-        const nidFront = await uploadFileToStorage('mNidFront', 'nid_docs');
-        const nidBack = await uploadFileToStorage('mNidBack', 'nid_docs');
-        const cert = await uploadFileToStorage('mCert', 'cert_docs');
-        const sign = await uploadFileToStorage('mSign', 'signatures');
-
-        const newApplicant = {
-            id: Date.now(),
-            name: document.getElementById('mName').value,
-            phone: document.getElementById('mPhone').value,
-            pin: document.getElementById('mPin').value,
-            payment: document.getElementById('mPaymentMethod').value,
-            txId: document.getElementById('mTxId').value,
-            guardian: document.getElementById('mGuardianNo').value,
-            blood: document.getElementById('mBlood').value,
-            dob: document.getElementById('mDob').value,
-            address: document.getElementById('mAddress').value,
-            date: new Date().toLocaleDateString(),
-            status: 'Pending',
-            photoUrl, nidFront, nidBack, cert, sign
-        };
-
-        await db.collection('applicants').add(newApplicant);
-        alert("আপনার আবেদন সফলভাবে জমা হয়েছে!");
-        document.getElementById('memberApplicationForm').reset();
+            applicants.push(newApplicant);
+            setStoredData('avmis_applicants', applicants);
+            alert("আপনার আবেদন সফলভাবে জমা হয়েছে!");
+            document.getElementById('memberApplicationForm').reset();
+        }
+        if(photoFile) reader.readAsDataURL(photoFile);
     }
 
-    async function memberLogin() {
-        const phone = document.getElementById('loginPhone').value;
-        const pin = document.getElementById('loginPin').value;
-        const snapshot = await db.collection('applicants').where('phone', '==', phone).where('pin', '==', pin).get();
-        
-        const profileView = document.getElementById('memberProfileView');
+    // সদস্য লগইন
+    function memberLogin() {
+        let phone = document.getElementById('loginPhone').value;
+        let pin = document.getElementById('loginPin').value;
+        let applicants = getStoredData('avmis_applicants');
+
+        let user = applicants.find(a => a.phone === phone && a.pin === pin);
+        let profileView = document.getElementById('memberProfileView');
         profileView.classList.remove('hidden');
 
-        if(!snapshot.empty) {
-            const user = snapshot.docs[0].data();
-            const statusBadge = user.status === 'Confirmed' ? '<span class="badge badge-confirmed">কনফার্মড</span>' :
+        if(user) {
+            let statusBadge = user.status === 'Confirmed' ? '<span class="badge badge-confirmed">কনফার্মড</span>' :
                               user.status === 'Blocked' ? '<span class="badge badge-blocked">ব্লকড</span>' : '<span class="badge badge-pending">পেন্ডিং</span>';
 
             profileView.innerHTML = `
-                <img src="${user.photoUrl}" style="width:70px; height:70px; border-radius:50%; object-fit:cover;">
+                <img src="${user.photo}" style="width:70px; height:70px; border-radius:50%; object-fit:cover;">
                 <h4>নাম: ${user.name}</h4>
                 <p>নম্বর: ${user.phone}</p>
                 <p>রক্তের গ্রুপ: ${user.blood}</p>
+                <p>আবেদনের তারিখ: ${user.date}</p>
                 <p>স্ট্যাটাস: ${statusBadge}</p>
             `;
         } else {
@@ -542,86 +411,66 @@ const app = initializeApp(firebaseConfig);
         }
     }
 
-    async function resetMemberPin() {
-        const phone = document.getElementById('fpPhone').value;
-        const guardian = document.getElementById('fpGuardian').value;
-        const newPin = document.getElementById('fpNewPin').value;
+    // এডমিন লগইন
+    function adminLogin() {
+        let email = document.getElementById('adminEmail').value;
+        let pin = document.getElementById('adminPin').value;
+        let execs = getStoredData('avmis_execs');
 
-        if(!phone || !guardian || !newPin) {
-            alert("সকল তথ্য পূরণ করুন!");
-            return;
-        }
-
-        const snapshot = await db.collection('applicants').where('phone', '==', phone).where('guardian', '==', guardian).get();
-
-        if(!snapshot.empty) {
-            const docId = snapshot.docs[0].id;
-            await db.collection('applicants').doc(docId).update({ pin: newPin });
-            alert("আপনার পিন সফলভাবে পরিবর্তন করা হয়েছে!");
-            showSubTab('loginForm');
+        if(execs && (execs.e1Email === email && execs.e1Pin === pin) || (execs.e2Email === email && execs.e2Pin === pin)) {
+            document.getElementById('adminLoginBox').classList.add('hidden');
+            document.getElementById('adminDashboard').classList.remove('hidden');
+            loadAdminDashboard();
         } else {
-            alert("সদস্য নম্বর বা অভিভাবকের নম্বর মিলেনি!");
+            alert("সঠিক এডমিন জিমেইল ও পিন প্রদান করুন!");
         }
     }
 
-    async function adminLogin() {
-        const email = document.getElementById('adminEmail').value;
-        const pin = document.getElementById('adminPin').value;
-        const execDoc = await db.collection('system').doc('executives').get();
-
-        if(execDoc.exists) {
-            const exec = execDoc.data();
-            if((exec.e1Email === email && exec.e1Pin === pin) || (exec.e2Email === email && exec.e2Pin === pin)) {
-                document.getElementById('adminLoginBox').classList.add('hidden');
-                document.getElementById('adminDashboard').classList.remove('hidden');
-                loadAdminDashboard();
-            } else {
-                alert("সঠিক এডমিন জিমেইল ও পিন প্রদান করুন!");
-            }
-        }
-    }
-
-    async function loadAdminDashboard() {
-        const snapshot = await db.collection('applicants').get();
-        let total = snapshot.size;
+    function loadAdminDashboard() {
+        let applicants = getStoredData('avmis_applicants');
+        let total = applicants.length;
         
-        document.getElementById('statsBox').innerHTML = `<b>মোট আবেদন:</b> ${total} জন`;
+        document.getElementById('statsBox').innerHTML = `
+            <b>মোট আবেদন:</b> ${total} জন <br>
+        `;
 
         let listHtml = '<h4>আবেদনকারীদের তালিকা:</h4>';
-        snapshot.docs.forEach((doc, index) => {
-            const app = doc.data();
+        applicants.forEach((app, index) => {
             listHtml += `
                 <div style="background:#fff; padding:8px; margin-bottom:5px; border-radius:4px; border:1px solid #ccc;">
                     <b>${index + 1}. ${app.name}</b> (${app.phone}) - স্ট্যাটাস: <b>${app.status}</b><br>
-                    <button onclick="changeStatus('${doc.id}', 'Confirmed')" style="background:green; width:auto; padding:3px 8px; font-size:11px;">কনফার্ম</button>
-                    <button onclick="changeStatus('${doc.id}', 'Blocked')" style="background:orange; width:auto; padding:3px 8px; font-size:11px;">ব্লক</button>
-                    <button onclick="deleteApplicant('${doc.id}')" style="background:red; width:auto; padding:3px 8px; font-size:11px;">ডিলিট</button>
+                    <button onclick="changeStatus(${app.id}, 'Confirmed')" style="background:green; width:auto; padding:3px 8px; font-size:11px;">কনফার্ম</button>
+                    <button onclick="changeStatus(${app.id}, 'Blocked')" style="background:orange; width:auto; padding:3px 8px; font-size:11px;">ব্লক</button>
+                    <button onclick="deleteApplicant(${app.id})" style="background:red; width:auto; padding:3px 8px; font-size:11px;">ডিলিট</button>
                 </div>
             `;
         });
         document.getElementById('applicantsList').innerHTML = listHtml;
     }
 
-    async function changeStatus(docId, status) {
-        await db.collection('applicants').doc(docId).update({ status: status });
+    function changeStatus(id, status) {
+        let applicants = getStoredData('avmis_applicants');
+        applicants = applicants.map(a => a.id === id ? {...a, status: status} : a);
+        setStoredData('avmis_applicants', applicants);
         loadAdminDashboard();
     }
 
-    async function deleteApplicant(docId) {
+    function deleteApplicant(id) {
         if(!confirm("নিশ্চিত ডিলিট করতে চান?")) return;
-        await db.collection('applicants').doc(docId).delete();
+        let applicants = getStoredData('avmis_applicants');
+        applicants = applicants.filter(a => a.id !== id);
+        setStoredData('avmis_applicants', applicants);
         loadAdminDashboard();
     }
 
-    async function exportDataCSV() {
-        const snapshot = await db.collection('applicants').get();
+    function exportDataCSV() {
+        let applicants = getStoredData('avmis_applicants');
         let csvContent = "data:text/csv;charset=utf-8,Name,Phone,Blood,Status,Date\n";
-        snapshot.docs.forEach(doc => {
-            const a = doc.data();
+        applicants.forEach(a => {
             csvContent += `${a.name},${a.phone},${a.blood},${a.status},${a.date}\n`;
         });
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
+        let encodedUri = encodeURI(csvContent);
+        let link = document.createElement("a");
         link.setAttribute("href", encodedUri);
         link.setAttribute("download", "avmis_applicants.csv");
         document.body.appendChild(link);
@@ -629,5 +478,6 @@ const app = initializeApp(firebaseConfig);
         document.body.removeChild(link);
     }
 </script>
+
 </body>
 </html>
